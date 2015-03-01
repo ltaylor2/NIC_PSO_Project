@@ -12,7 +12,7 @@ public:
     double getGBest() const { return gBestEval; }
 
 private:
-    virtual void updateGlobalBests() = 0;
+    virtual void updateLocalBests() = 0;
     
     std::vector<Particle> particles;
     std::vector<double> gBest;

@@ -1,5 +1,4 @@
 #include "Swarm.h"
-
 #include <limits>
 
 Swarm::Swarm(int numParticles, int dim, Particle::toOptimize f, int maxIterations)
@@ -33,7 +32,7 @@ GlobalSwarm::GlobalSwarm(int numParticles, int dim, Particle::toOptimize f, int 
     : Swarm(numParticles, dim, f, maxIterations)
 {}
 
-GlobalSwarm::updateGlobalBests()
+GlobalSwarm::updateLocalBests()
 {
     for (int i = 0; i < particles.size(); i++)
         particles[i].updateGlobalBest(gBest);
