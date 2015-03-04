@@ -3,8 +3,11 @@ CFLAGS= -g -Wall -std=c++0x
 
 default: compile
 
-compile: Swarm.o Particle.o
+compile: Main.o Swarm.o Particle.o
 	$(CC) $? -o pso
+
+Main.o: Main.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 Swarm.o: Swarm.cpp Swarm.h
 	$(CC) $(CFLAGS) -c $< -o $@

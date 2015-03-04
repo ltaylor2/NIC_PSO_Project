@@ -1,14 +1,25 @@
 #include "Particle.h"
 
-Particle::Particle(int dim, double phiP_, double phiG_) : 
-            position(dim, 0),
-            velocity(dim, 0),
-            pBest(dim, 0),
-            gBest(dim, 0),
-            phiP(phiP_),
-            phiG(phiG_),
-            cg(0)
-{}
+#include <limits>
+#include <iostream>
+
+toOptimize Particle::f;
+
+// TODO generalize randomization
+Particle::Particle(int dim)
+    : position(dim, 0), 
+      velocity(dim, 0), 
+      pBest(dim, 0), 
+      lBest(dim, 0),
+      pBestEval(std::numeric_limits<double>::max()), 
+      lBestEval(std::numeric_limits<double>::max())
+{
+    // NOTE hard coded for Rosenbrock
+    for (int i = 0; i < dim; i++) {
+        position[i] = Particle::getRandFromZeroTo(15.0) + 15.0;
+        velocity[i] = Particle::getRandFromZeroTo(4.0) - 2.0;
+    }
+}
 
 void Particle::update() {
     updateVelocity();
@@ -17,20 +28,23 @@ void Particle::update() {
 }
 
 void Particle::updateVelocity() {
-    for (int i = 0; i < position.size(); i++) {
+    for (unsigned int i = 0; i < position.size(); i++) {
         velocity[i] = cf * (velocity[i] + (Particle::getRandFromZeroTo(phiP) * 
                             (pBest[i] - position[i]) + Particle::getRandFromZeroTo(phiG) * 
-                            (gBest[i] - position[i])));    
+                            (lBest[i] - position[i])));    
     }
 }
 
 void Particle::updatePosition() {
-    for (int i = 0; i < position.size(); i++) { 
+    for (unsigned int i = 0; i < position.size(); i++) { 
         position[i] += velocity[i];
     }
 }
 
 void Particle::updatePersonalBest() {
-    if (f(position) > pBestEval)
+    int eval = f(position);
+    if (eval < pBestEval) {
+        pBestEval = eval;
         pBest = position;
+    }
 }
