@@ -42,7 +42,7 @@ void Particle::updatePosition() {
 }
 
 void Particle::updatePersonalBest() {
-    int eval = f(position);
+    double eval = f(position);
     if (eval < pBestEval) {
         pBestEval = eval;
         pBest = position;
