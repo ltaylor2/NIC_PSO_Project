@@ -9,6 +9,7 @@ typedef double (*toOptimize)(const std::vector<double>& x);
 class Particle {
 public:
     Particle(int dim);
+    void randInit(double lpos, double rpos, double lvel, double rvel);
     void update();
     double getPersonalBestEval() const { return pBestEval; }
     const std::vector<double>& getPersonalBest() const { return pBest; }

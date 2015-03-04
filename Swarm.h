@@ -4,9 +4,15 @@
 
 #include "Particle.h"
 
+enum class TestFunction {
+    Rosenbrock,
+    Ackley,
+    Rastrigin
+};
+
 class PlainSwarm {
 public:
-    PlainSwarm(int numParticles, int iterations, toOptimize f, int dim);
+    PlainSwarm(int numParticles, int iterations, TestFunction func, int dim);
     void run(int iterations);
 
     const std::vector<Particle>& getParticles() const { return particles; }

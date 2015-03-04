@@ -5,19 +5,19 @@
 
 toOptimize Particle::f;
 
-// TODO generalize randomization
 Particle::Particle(int dim)
     : position(dim, 0), 
       velocity(dim, 0), 
       pBest(dim, 0), 
       lBest(dim, 0),
       pBestEval(std::numeric_limits<double>::max()), 
-      lBestEval(std::numeric_limits<double>::max())
+      lBestEval(std::numeric_limits<double>::max()) {}
+
+void Particle::randInit(double lpos, double rpos, double lvel, double rvel)
 {
-    // NOTE hard coded for Rosenbrock
-    for (int i = 0; i < dim; i++) {
-        position[i] = Particle::getRandFromZeroTo(15.0) + 15.0;
-        velocity[i] = Particle::getRandFromZeroTo(4.0) - 2.0;
+    for (unsigned int i = 0; i < position.size(); i++) {
+        position[i] = Particle::getRandFromZeroTo(rpos - lpos) + lpos;
+        velocity[i] = Particle::getRandFromZeroTo(rvel - lvel) - lvel;
     }
 }
 
