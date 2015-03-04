@@ -22,7 +22,7 @@ double ackley(const std::vector<double>& x) {
 		firstSum += (x[i] * x[i]);
 		secondSum += cos(2.0 * PI * x[i]);
 	}
-	return -20.0 * exp(-0.2 * sqrt(firstSum/2.0)) - exp(secondSum/2.0) + 20.0 + E;
+	return -20.0 * exp(-0.2 * sqrt(firstSum/x.size())) - exp(secondSum/x.size()) + 20.0 + E;
 }
 
 double rastrigin(const std::vector<double>& x) {
