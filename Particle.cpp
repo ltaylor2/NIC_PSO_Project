@@ -3,16 +3,18 @@
 #include <limits>
 #include <iostream>
 
+// Static function pointer defined
 toOptimize Particle::f;
 
-Particle::Particle(int dim)
+// See doc in Particle.h
+Particle::Particle(unsigned int dim)
     : position(dim, 0), 
       velocity(dim, 0), 
       pBest(dim, 0), 
       lBest(dim, 0),
-      pBestEval(std::numeric_limits<double>::max()), 
-      lBestEval(std::numeric_limits<double>::max()) {}
+      pBestEval(std::numeric_limits<double>::max()) {} 
 
+// See doc in Particle.h
 void Particle::randInit(double lpos, double rpos, double lvel, double rvel)
 {
     for (unsigned int i = 0; i < position.size(); i++) {
@@ -21,12 +23,14 @@ void Particle::randInit(double lpos, double rpos, double lvel, double rvel)
     }
 }
 
+// See doc in Particle.h
 void Particle::update() {
     updateVelocity();
     updatePosition();
     updatePersonalBest();
 }
 
+// See doc in Particle.h
 void Particle::updateVelocity() {
     for (unsigned int i = 0; i < position.size(); i++) {
         velocity[i] = cf * (velocity[i] + (Particle::getRandFromZeroTo(phiP) * 
@@ -35,12 +39,14 @@ void Particle::updateVelocity() {
     }
 }
 
+// See doc in Particle.h
 void Particle::updatePosition() {
     for (unsigned int i = 0; i < position.size(); i++) { 
         position[i] += velocity[i];
     }
 }
 
+// See doc in Particle.h
 void Particle::updatePersonalBest() {
     double eval = f(position);
     if (eval < pBestEval) {

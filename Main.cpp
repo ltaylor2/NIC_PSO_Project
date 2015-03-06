@@ -1,10 +1,20 @@
 #include <iostream>
 #include <cmath>
 #include <stdlib.h>
+#include <ctime>
 #include <time.h>
+#include <iostream>
+#include <fstream>
 
 #include "Swarm.h"
 
+// This file includes the main function.
+// Commandline options:
+// @arg1 topology [gl=global | ri=ring | vn=von neum | ra=random] (string)
+// @arg2 sizeOfSwarm (int)
+// @arg3 numberOfIterations (int)
+// @arg4 function [rok=rosenbrock | ack=ackley | ras=rastrigin] (string)
+// @arg5 dimensionalityOfFunction (int)
 int main(int argc, char** argv)
 {
     if (argc != 6) {
@@ -13,6 +23,8 @@ int main(int argc, char** argv)
     }
 
     srand(time(NULL));
+    
+    std::clock_t start = std::clock();
 
     TestFunction func;
     std::string function(argv[4]);
@@ -28,9 +40,24 @@ int main(int argc, char** argv)
     }
 
     std::string topology(argv[1]);
+    
     if (topology == "gl") {
-        PlainSwarm swarm(atoi(argv[2]), atoi(argv[3]), func, atoi(argv[5]));
+        PlainSwarm swarm(atoi(argv[2]), func, atoi(argv[5]));
+        swarm.run(atoi(argv[3]));
+    } else if (topology == "ri") {
+        RingSwarm swarm(atoi(argv[2]), func, atoi(argv[5]));
+        swarm.run(atoi(argv[3]));
+    } else if (topology == "vn") {
+        VonNeumannSwarm swarm(atoi(argv[2]), func, atoi(argv[5]));
+        swarm.run(atoi(argv[3]));
+    } else if (topology == "ra") {
+        RandomSwarm swarm(atoi(argv[2]), func, atoi(argv[5]));
+        swarm.run(atoi(argv[3]));
     }
 
+    std::clock_t end = std::clock();
+    double timeInSeconds = (end - start) / (double) CLOCKS_PER_SEC;
+    std::cout << "Time elapsed: " << timeInSeconds << " seconds" << std::endl;
+    
     return 0;
 }
