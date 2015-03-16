@@ -4,6 +4,15 @@
 #include <vector>
 #include <cmath>
 
+/*
+ 
+ ****************************
+ *         Particle         *
+ ****************************
+ Daniel Cohen, Josh Imhoff, and Liam Taylor. 2015. CS3445, Bowdoin College.
+
+*/
+
 // Function pointer to function to optimize
 // NOTE typedef allows us to have the function pointer as static 
 //      variable of Particle

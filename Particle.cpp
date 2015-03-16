@@ -3,6 +3,15 @@
 #include <limits>
 #include <iostream>
 
+/*
+ 
+ ****************************
+ *         Particle         *
+ ****************************
+ Daniel Cohen, Josh Imhoff, and Liam Taylor. 2015. CS3445, Bowdoin College.
+
+*/
+
 // Static function pointer defined
 toOptimize Particle::f;
 

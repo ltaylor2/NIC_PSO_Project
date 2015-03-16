@@ -8,7 +8,19 @@
 
 #include "Swarm.h"
 
-// This file includes the main function.
+/*
+ 
+ ****************************
+ *          Main            *
+ ****************************
+ This program attempts to fulfill Project 2 for CS3445 at Bowdoin College.
+ Daniel Cohen, Josh Imhoff, and Liam Taylor. 2015.
+ This file includes the main function.
+ 
+*/
+
+
+
 // Commandline options:
 // @arg1 topology [gl=global | ri=ring | vn=von neum | ra=random] (string)
 // @arg2 sizeOfSwarm (int)

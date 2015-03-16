@@ -5,6 +5,15 @@
 #include <fstream>
 #include <iomanip>
 
+/*
+ 
+ ****************************
+ *           Swarm          *
+ ****************************
+ Daniel Cohen, Josh Imhoff, and Liam Taylor. 2015. CS3445, Bowdoin College.
+ 
+*/
+
 // NOTE issue including appropriate constants from stdlib led to us
 //      writing out these constants by hand
 const double PI = 3.141592653589793238463;

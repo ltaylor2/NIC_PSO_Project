@@ -5,6 +5,15 @@
 
 #include "Particle.h"
 
+/*
+ 
+ ****************************
+ *           Swarm          *
+ ****************************
+ Daniel Cohen, Josh Imhoff, and Liam Taylor. 2015. CS3445, Bowdoin College.
+ 
+*/
+
 // Enum used to choose function to optimize
 // NOTE enum class is scoped, C++11 feature
 enum class TestFunction {
